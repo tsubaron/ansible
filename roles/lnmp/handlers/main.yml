@@ -1,0 +1,6 @@
+---
+- name: reloaded nginx
+  service: name=nginx state=reloaded
+
+- name: nginx wordpress files owner
+  command: chown -R nginx:nginx /var/www/wordpress

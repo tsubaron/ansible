@@ -1,0 +1,5 @@
+- name: php composer install
+  shell: curl -sS https://getcomposer.org/installer | php72 && mv composer.phar composer
+  args:
+    chdir: /usr/local/bin
+    creates: /usr/local/bin/composer

@@ -1,0 +1,7 @@
+---
+---
+- include: common.yml
+- hosts: hosts
+  become: yes
+  roles:
+    - lnmp
