@@ -1,5 +1,10 @@
 ---
-- include: epel.yml
-- include: common-packages.yml
+- name: initialize
+  shell: yum update -y
+
+#- name: initialize
+#  shell: amazon-linux-extras install epel
+
+- include: bind-utils.yml
 - include: sshd.yml
 - include: ntp.yml

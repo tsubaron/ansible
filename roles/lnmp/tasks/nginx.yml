@@ -1,9 +1,0 @@
-- name: install nginx
-  yum: name=nginx state=latest
-
-- name: setup nginx
-  copy: src=nginx.conf dest=/etc/nginx/nginx.conf owner=root group=root mode=664 force=true
-  notify: reload nginx
-
-- name: start nginx
-  service: name=nginx state=started enabled=yes

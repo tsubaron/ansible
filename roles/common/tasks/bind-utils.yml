@@ -1,0 +1,4 @@
+---
+- name: be sure bind-utils is installed
+  yum: name=bind-utils state=installed
+  tags: bind-utils

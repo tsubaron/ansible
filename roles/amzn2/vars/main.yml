@@ -1,3 +1,4 @@
 ---
 dbname: dbname
 dbuser: dbuser
+dbpassword: dbpassword

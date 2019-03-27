@@ -1,5 +1,4 @@
 ---
 - include: nginx.yml
-- include: mysql.yml
+- include: mariadb.yml
 - include: php.yml
-- include: php-fpm.yml

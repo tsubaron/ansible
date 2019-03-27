@@ -1,0 +1,29 @@
+---
+- name: be sure mariadb is installed
+  become: yes
+  yum: name=mariadb
+
+- name: be sure mariadb is installed
+  become: yes
+  yum: name=mariadb-server
+
+- name: be sure mariadb is installed
+  become: yes
+  yum: name=mariadb-devel
+
+- name: setup mariadb
+  become: yes
+  template: src=my.cnf.d/{{item}}.cnf.j2 dest=/etc/my.cnf.d/{{item}}.cnf owner=root group=root mode=664 force=true
+  with_items:
+    - client
+    - mysql-clients
+    - server
+
+#- name: setting
+#  mysql_user: name={{dbuser}} password={{dbpassword}} priv=*.*:ALL state=present host={{item}}
+#  with_items:
+#    - '%'
+#    - 'localhost'
+#
+#- name: create mariadb database
+#  mysql_db: name={{dbname}} state=present

@@ -8,13 +8,13 @@
     insertafter="{{ item.insertafter }}"
   with_items:
     - regexp: '^PasswordAuthentication'
-      line: 'PasswordAuthentication no'
       insertafter: '#PasswordAuthentication no'
+      line: 'PasswordAuthentication no'
     - regexp: '^PermitRootLogin'
-      line: 'PermitRootLogin no'
       insertafter: '#PermitRootLogin'
+      line: 'PermitRootLogin no'
     - regexp: '^GSSAPIAuthentication'
-      line: 'GSSAPIAuthentication no'
       insertafter: '#GSSAPIAuthentication'
+      line: 'GSSAPIAuthentication no'
   notify: restart sshd
   tags: sshd

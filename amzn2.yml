@@ -1,7 +1,5 @@
----
----
 - include: common.yml
-- hosts: hosts
+- hosts: all
   become: yes
   roles:
-    - lnmp
+    - amzn2
