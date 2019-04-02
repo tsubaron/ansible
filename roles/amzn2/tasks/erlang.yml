@@ -1,0 +1,25 @@
+---
+#- name: be sure groupinstall "Development Tools" is installed
+#  yum:
+#    name: groupinstall "Development Tools"
+#    state: installed
+#
+- name: be sure compile middleware for erlang is installed
+  become: yes
+  yum:
+    name: "{{ packages }}"
+    state: installed
+  vars:
+    packages:
+    - openssl
+    - openssl-devel
+    - gcc-c++
+    - unixODBC
+    - unixODBC-devel
+    - fop
+    - java-1.8.0-openjdk-devel
+
+- name: Download erlang src
+  get_url:
+    url: "http://erlang.org/download/otp_src_21.3.tar.gz"
+    dest: "~/"

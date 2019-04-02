@@ -19,6 +19,14 @@
     - mysql-clients
     - server
 
+- name: start mariadb
+  systemd:
+    name: mariadb
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes
+
 #- name: setting
 #  mysql_user: name={{dbuser}} password={{dbpassword}} priv=*.*:ALL state=present host={{item}}
 #  with_items:

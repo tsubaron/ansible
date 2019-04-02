@@ -3,7 +3,18 @@
   shell: amazon-linux-extras install php7.3 -y
   become: yes
 
-# - name: be sure php-module is installed
-#   yum: name={{item}}
-#   with_items:
-#     - php-gd
+- name: be sure php-module is installed
+  yum:
+    name: "{{packages}}"
+    state: installed
+  vars:
+    packages:
+      - php-gd
+
+- name: start php-fpm
+  systemd:
+    name: php-fpm
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes

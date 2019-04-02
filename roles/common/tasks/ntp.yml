@@ -3,3 +3,10 @@
   yum: name=ntp state=installed
   tags: ntpd
 
+- name: start ntpd
+  systemd:
+    name: ntpd
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes

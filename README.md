@@ -1,15 +1,14 @@
-# hostsファイル作成
+# Ansible実行手順
+## hostsファイル作成
 
   $ cp hosts.example hosts
 
-# 作成する環境に応じて実行
-## AmazonLinux2 + nginx + mariadb + php
+## 作成する環境に応じてamzn2/tasks/main.ymlを変更
 
-  $ ansible-playbook lnmp.yml -i hosts
+  $ vim amzn2/tasks/main.yml
 
-## phoenix
-
-  $ ansible-playbook phoenix.yml -i hosts
+## ansible実行
+  $ ansible-playbook amzn2.yml -i hosts
 
 # Ansibleテスト用のサーバー
 ## AmazonoLinux2のボックスファイルインストール
@@ -20,3 +19,4 @@
 
   $ cd test_server
   $ vagrant up
+

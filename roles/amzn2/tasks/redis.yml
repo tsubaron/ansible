@@ -1,0 +1,15 @@
+---
+- name: be sure redis is installed
+  become: yes
+  yum:
+    name: redis
+    state: installed
+    enablerepo: epel
+
+- name: start redis
+  become: yes
+  systemd:
+    name: redis
+    state: restarted
+    daemon_reload: yes
+    enabled: yes

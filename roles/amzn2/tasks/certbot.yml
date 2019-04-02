@@ -1,0 +1,10 @@
+- name: be sure certbot is installed
+  become: yes
+  yum:
+    name: "{{ packages }}"
+    state: installed
+    enablerepo: epel
+  vars:
+    packages:
+      - certbot
+      - python2-certbot
