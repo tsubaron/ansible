@@ -4,17 +4,44 @@
   become: yes
 
 - name: be sure php-module is installed
+  become: yes
   yum:
-    name: "{{packages}}"
+    name: "{{ packages }}"
     state: installed
   vars:
     packages:
       - php-gd
+      - php-mbstring
+      - php-dom
 
 - name: start php-fpm
+  become: yes
   systemd:
     name: php-fpm
     state: restarted
     daemon_reload: yes
     enabled: yes
+
+- name: configure php.ini
   become: yes
+  lineinfile: >
+    dest=/etc/php.ini
+    owner=root group=root mode=0600 backup=yes
+    line="{{ item.line }}"
+    insertafter="{{ item.insertafter }}"
+  with_items:
+    - insertafter: ';date.timezone ='
+      line: 'date.timezone = "Asia/Tokyo"'
+
+- name: configure php-fpm
+  become: yes
+  lineinfile: >
+    dest=/etc/php-fpm.d/www.conf
+    owner=root group=root mode=0600 backup=yes
+    regexp="{{ item.regexp }}"
+    line="{{ item.line }}"
+  with_items:
+    - regexp: 'user = apache'
+      line: 'user = nginx'
+    - regexp: 'group = apache'
+      line: 'group = nginx'

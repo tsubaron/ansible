@@ -1,7 +1,4 @@
----
-- name: initialize
-  shell: yum update -y
-
+- include: init.yml
 - include: bind-utils.yml
 - include: sshd.yml
 - include: epel.yml

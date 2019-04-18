@@ -8,3 +8,4 @@
     packages:
       - certbot
       - python2-certbot
+      - python2-certbot-nginx

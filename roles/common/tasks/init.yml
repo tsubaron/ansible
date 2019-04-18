@@ -1,0 +1,21 @@
+---
+- name: yum update
+  shell: yum update -y
+  become: yes
+
+- name: change timezone
+  shell: ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+  become: yes
+
+- name: timezone
+  lineinfile: >
+    dest=/etc/sysconfig/clock
+    owner=root group=root mode=0600 backup=yes
+    regexp="{{ item.regexp }}"
+    line="{{ item.line }}"
+  with_items:
+    - regexp: 'ZONE="UTC"'
+      line: 'ZONE="Asia/Tokyo"'
+    - regexp: 'UTC=true'
+      line: 'UTC=false'
+

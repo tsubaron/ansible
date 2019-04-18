@@ -1,25 +1,41 @@
----
+#---
+# 作成途中
+#
 #- name: be sure groupinstall "Development Tools" is installed
 #  yum:
-#    name: groupinstall "Development Tools"
-#    state: installed
+#    name="{{ packages }}"
+#    state=present
+#  vars:
+#    packages:
+#      - "@Development Tools"
+#      - "@C Development Tools and Libraries"
+#  become: yes
 #
-- name: be sure compile middleware for erlang is installed
-  become: yes
-  yum:
-    name: "{{ packages }}"
-    state: installed
-  vars:
-    packages:
-    - openssl
-    - openssl-devel
-    - gcc-c++
-    - unixODBC
-    - unixODBC-devel
-    - fop
-    - java-1.8.0-openjdk-devel
-
-- name: Download erlang src
-  get_url:
-    url: "http://erlang.org/download/otp_src_21.3.tar.gz"
-    dest: "~/"
+#- name: be sure compile middleware for erlang is installed
+#  become: yes
+#  yum:
+#    name: "{{ packages }}"
+#    state: installed
+#  vars:
+#    packages:
+#    - autoconf
+#    - ncurses-devel
+#    - wxGTK3-devel
+#    - wxBase3
+#    - openssl-devel
+#    - java-1.8.0-openjdk-devel
+#    - libiodbc
+#    - unixODBC.x86_64
+#    - erlang-odbc.x86_64
+#    - libxslt
+#
+#- name: be sure install asdf
+#  git:
+#    repo: git@github.com:asdf-vm/asdf.git
+#    dest: ~/.asdf
+#
+#- name: echo asdf path write bashrc
+#  shell: |
+#    ehco '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+#    echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
+#    . ~/.bashrc
