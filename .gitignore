@@ -1,2 +1,3 @@
 hosts
-test_server/.vagrant
+compile_server/.vagrant
+dummy_deploy_server/.vagrant

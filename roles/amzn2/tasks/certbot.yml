@@ -7,5 +7,4 @@
   vars:
     packages:
       - certbot
-      - python2-certbot
-      - python2-certbot-nginx
+      - python2-certbot-dns-route53

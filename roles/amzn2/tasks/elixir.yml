@@ -1,0 +1,48 @@
+#- name: be sure groupinstall "Development Tools" is installed
+#  yum:
+#    name="{{ packages }}"
+#    state=present
+#  vars:
+#    packages:
+#      - "@Development Tools"
+#      - "@C Development Tools and Libraries"
+#  become: yes
+
+#- name: be sure compile middleware for erlang is installed
+#  become: yes
+#  yum:
+#    name: "{{ packages }}"
+#    state: installed
+#  vars:
+#    packages:
+#    - autoconf
+#    - ncurses-devel
+#    - openssl-devel
+#    - wxWidgets
+#    - java-1.8.0-openjdk-devel
+#    - libiodbc
+#    - unixODBC.x86_64
+#    - libxslt
+
+- name: be sure install asdf
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: /home/vagrant/.asdf
+    accept_hostkey: yes
+  become: yes
+  become_user: vagrant
+
+- name: echo asdf path write bashrc
+  shell: |
+    echo '. /home/vagrant/.asdf/asdf.sh' >> /home/vagrant/.bashrc
+    echo '. /home/vagrant/.asdf/completions/asdf.bash' >> /home/vagrant/.bashrc
+    . /home/vagrant/.bashrc
+  become: yes
+  become_user: vagrant
+
+- name: erlang/elixer plugin install by asdf
+  shell: |
+    /home/vagrant/.asdf/bin/asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+    /home/vagrant/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+  become: yes
+  become_user: vagrant

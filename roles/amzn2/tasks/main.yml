@@ -2,8 +2,7 @@
   - include: nginx.yml
   - include: mariadb.yml
 #  - include: php.yml
-  - include: certbot.yml
+#  - include: certbot.yml
 #  - include: composer.yml
 #  - include: redis.yml
-#  - include: erlang.yml
-#- include: elixir.yml
+  - include: elixir.yml
